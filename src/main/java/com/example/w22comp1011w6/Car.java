@@ -37,7 +37,7 @@ public class Car implements Comparable<Car>{
 
     public String toString()
     {
-        return String.format("%-10d %s-%s", year, make, model);
+        return String.format("%d %s-%s", year, make, model);
     }
 
     @Override
@@ -45,6 +45,10 @@ public class Car implements Comparable<Car>{
         if (this.year != otherCar.getYear())
             return this.getYear() - otherCar.getYear();
         else
-            return make.compareTo(otherCar.make);
+        {
+            String thisCar = make+model;
+            String other = otherCar.getMake()+otherCar.getModel();
+            return thisCar.compareTo(other);
+        }
     }
 }
