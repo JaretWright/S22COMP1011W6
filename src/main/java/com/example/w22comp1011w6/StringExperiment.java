@@ -1,11 +1,14 @@
 package com.example.w22comp1011w6;
 
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.Scanner;
 
 public class StringExperiment {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws FileNotFoundException {
         String s1 = new String("Java");
         String s2 = new String("Java");
 
@@ -14,6 +17,7 @@ public class StringExperiment {
         System.out.println("s1.equals(s2) : " + s1.equals(s2));
 
         String s3 = "java";
+        s3 = s3 + " cool";  //java cool
         System.out.println("s1.equalsIgnoreCase(s3) : " + s1.equalsIgnoreCase(s3));
 
         System.out.println("\"abc\".compareTo(\"def\") : " + "abc".compareTo("def"));
@@ -52,7 +56,16 @@ public class StringExperiment {
 
         System.out.printf("%s %s initials: %s%s%n", first, last, first.substring(0,1), last.substring(0,1));
 
-
-
+        //reads the file
+        Scanner fileScanner = new Scanner(new File("names.csv"));
+        while (fileScanner.hasNext())
+        {
+            String fullName = fileScanner.nextLine();
+            System.out.println("Full Name scanned: " + fullName);
+            String[] nameDivided = fullName.split(",");
+            System.out.println("first name: " + nameDivided[0]);
+            System.out.println("middle name: " + nameDivided[1]);
+            System.out.println("last name: " + nameDivided[2]);
+        }
     }
 }
