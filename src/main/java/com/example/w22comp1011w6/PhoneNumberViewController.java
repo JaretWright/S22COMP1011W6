@@ -24,11 +24,24 @@ public class PhoneNumberViewController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+
+
         phoneNumTextField.textProperty().addListener((obs, oldValue, phoneNum) -> {
-            if (phoneNum.matches("[2-9]\\d{2}[2-9]\\d{2}\\d{4}"))
+            if (phoneNum.matches("\\(?[2-9]\\d{2}\\)?[-\\s]?[2-9]\\d{2}[-\\s]?\\d{4}"))
+            {
                 phoneNumLabel.setText("Valid phone number");
+                phoneNum = phoneNum.replaceAll("[^0-9]*", "");
+                areaCodeLabel.setText("area code: " + phoneNum.substring(0,3));
+                cityCodeLabel.setText("city code: "+ phoneNum.substring(3,6));
+            }
             else
+            {
                 phoneNumLabel.setText("Invalid phone number");
+                areaCodeLabel.setText("");
+                cityCodeLabel.setText("");
+            }
+
+
 
         });
     }
